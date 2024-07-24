@@ -11,14 +11,28 @@ static struct proc_dir_entry *custom_proc_node;
 
 // Declaración del prototipo de la función
 ssize_t driver_read(struct file *file_ptr, char __user *user_space_buff, size_t count, loff_t *offset);
+//ssize_t driver_write(struct file *file_ptr, char __user *user_space_buff, size_t count, loff_t *offset);
 
 struct proc_ops driver_proc_ops = {
+    //.proc_write = 
     .proc_read = driver_read,
 };
 
 ssize_t driver_read(struct file *file_ptr, char __user *user_space_buff, size_t count, loff_t *offset) {
     printk(KERN_INFO "driver read\n");
-    return 0;
+
+    char msg[] = "Ack\n";
+    size_t len = strlen(msg);
+    int result;
+
+    if(*offset >= len){
+        return 0;
+    }
+
+    result =copy_to_user(user_space_buff,msg,len);
+    *offset += len;
+
+    return len;
 }
 
 static int __init init_mod(void) {
