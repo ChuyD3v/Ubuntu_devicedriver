@@ -1,0 +1,17 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/usr/src/linux-headers-$(uname -r)/include",
+                "/usr/src/linux-headers-$(uname -r)/arch/x86/include",
+                "/usr/src/linux-headers-$(uname -r)/arch/x86/include/generated",
+                "/usr/src/linux-headers-$(uname -r)/arch/x86/include/uapi",
+                "/usr/src/linux-headers-$(uname -r)/include/uapi",
+                "/usr/src/linux-headers-$(uname -r)/include/generated/uapi"
+            ]
+        }
+    ],
+    "version": 3
+}
